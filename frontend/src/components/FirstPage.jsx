@@ -18,8 +18,6 @@ const steps = [
   { number: 7, label: 'Finalize' },
 ];
 
-const completeness = 0;
-
 const templateComponents = [
   <Template1 key={0} />,
   <div key={1} style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:60}}><span role="img" aria-label="resume">📄</span></div>,
@@ -48,6 +46,44 @@ const FirstPage = () => {
     skills: [],
     summary: '',
   });
+
+  // Calculate resume completeness
+  const calculateCompleteness = () => {
+    let completedSections = 0;
+    const totalSections = 5; // heading, education, experience, skills, summary
+
+    // Check heading section (20% - 4 points)
+    const heading = formData.heading;
+    const headingFields = [heading.firstName, heading.surname, heading.profession, heading.city, heading.country, heading.pin, heading.phone, heading.email];
+    const filledHeadingFields = headingFields.filter(field => field && field.trim() !== '').length;
+    if (filledHeadingFields >= 6) { // At least 6 out of 8 fields filled
+      completedSections += 1;
+    }
+
+    // Check education section (20% - 4 points)
+    if (formData.education.length > 0 && formData.education.some(edu => edu.schoolName && edu.schoolName.trim() !== '')) {
+      completedSections += 1;
+    }
+
+    // Check experience section (20% - 4 points)
+    if (formData.experience.length > 0 && formData.experience.some(exp => exp.jobTitle && exp.jobTitle.trim() !== '')) {
+      completedSections += 1;
+    }
+
+    // Check skills section (20% - 4 points)
+    if (formData.skills.length > 0 && formData.skills.some(skill => skill && skill.trim() !== '')) {
+      completedSections += 1;
+    }
+
+    // Check summary section (20% - 4 points)
+    if (formData.summary && formData.summary.trim() !== '') {
+      completedSections += 1;
+    }
+
+    return Math.round((completedSections / totalSections) * 100);
+  };
+
+  const completeness = calculateCompleteness();
 
   const handleTemplateSelect = (idx) => {
     setSelectedTemplateIdx(idx);
