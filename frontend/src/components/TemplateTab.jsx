@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Template1 from './Templates/Template1';
+import Template2 from './Templates/Template2';
 
 const templateData = [
   {
@@ -48,8 +49,8 @@ const TemplateTab = ({ onUseTemplate }) => {
                 border: selectedIdx === idx ? '3px solid #2563eb' : '3px solid #e5e7eb',
                 borderRadius: 8,
                 boxShadow: '0 2px 12px rgba(10,24,51,0.08)',
-                width: 320,
-                minHeight: 430,
+                width: 380,
+                minHeight: 480,
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
@@ -63,7 +64,7 @@ const TemplateTab = ({ onUseTemplate }) => {
               {/* Template preview placeholder or actual template */}
               <div style={{
                 width: '100%',
-                height: 380,
+                height: 430,
                 background: tpl.bg,
                 borderTopLeftRadius: 8,
                 borderTopRightRadius: 8,
@@ -86,16 +87,38 @@ const TemplateTab = ({ onUseTemplate }) => {
                     overflow: 'hidden',
                   }}>
                     <div style={{
-                      marginTop: '540px',
-                      marginLeft: '406px',
-                      transform: 'scale(0.42)',
+                      marginTop: '470px',
+                      marginLeft: '160px',
+                      transform: 'scale(0.48)',
                       transformOrigin: 'top left',
-                      width: 700,
+                      width: 500,
                       height: 900,
                       pointerEvents: 'none',
                       boxSizing: 'border-box',
                     }}>
                       <Template1 />
+                    </div>
+                  </div>
+                ) : idx === 1 ? (
+                  <div style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                  }}>
+                    <div style={{
+                      marginTop: '470px',
+                      marginLeft: '160px',
+                      transform: 'scale(0.48)',
+                      transformOrigin: 'top left',
+                      width: 500,
+                      height: 900,
+                      pointerEvents: 'none',
+                      boxSizing: 'border-box',
+                    }}>
+                      <Template2 />
                     </div>
                   </div>
                 ) : (
@@ -141,8 +164,8 @@ const TemplateTab = ({ onUseTemplate }) => {
           }}>Choose later</button>
           <button
             style={{
-              background: '#fec84b',
-              color: '#2a003f',
+              background: '#6b3b7a',
+              color: 'white',
               border: 'none',
               fontWeight: 700,
               fontSize: 18,

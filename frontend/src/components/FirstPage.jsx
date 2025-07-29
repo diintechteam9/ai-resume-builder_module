@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import HeadingTab from './HeadingTab'
 import TemplateTab from './TemplateTab';
 import Template1 from './Templates/Template1';
+import Template2 from './Templates/Template2';
 import EducationTab from './EducationTab';
 import ExperienceTab from './ExperienceTab';
 import SkillsTab from './SkillsTab';
@@ -10,17 +11,17 @@ import FinalizeTab from './FinalizeTab';
 
 const steps = [
   { number: 1, label: 'Templates'},
-  { number: 2, label: 'Heading' },
-  { number: 3, label: 'Education' },
-  { number: 4, label: 'Experience' },
-  { number: 5, label: 'Skills' },
-  { number: 6, label: 'Summary' },
-  { number: 7, label: 'Finalize' },
+  { number: 2, label: 'Profile Info' },
+  { number: 3, label: 'Qualifications' },
+  { number: 4, label: 'Job History' },
+  { number: 5, label: 'Expertise' },
+  { number: 6, label: 'Career Overview' },
+  { number: 7, label: 'Wrap-Up' },
 ];
 
 const templateComponents = [
   <Template1 key={0} />,
-  <div key={1} style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:60}}><span role="img" aria-label="resume">📄</span></div>,
+  <Template2 key={1} />,
   <div key={2} style={{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',fontSize:60}}><span role="img" aria-label="resume">📄</span></div>,
 ];
 
@@ -209,8 +210,8 @@ const FirstPage = () => {
         </div>
         {/* Progress bar */}
         <div style={{ marginTop: 'auto', width: '100%' }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#c4b5fd', marginBottom: 8 }}>
-            RESUME COMPLETENESS:
+          <div style={{ fontSize: 20, fontWeight: 700, color: '#c4b5fd', marginBottom: 8 }}>
+            Status:
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div style={{
@@ -235,7 +236,7 @@ const FirstPage = () => {
       </div>
       {/* Main Content */}
       <div style={{
-        marginLeft: 300,
+        marginLeft: (selectedStep >= 1 && selectedStep <= 5) ? 240 : 300,
         minHeight: '100vh',
         maxHeight: '100vh',
         overflowY: 'auto',
@@ -246,43 +247,52 @@ const FirstPage = () => {
         {selectedStep === 0 && <TemplateTab onUseTemplate={handleTemplateSelect} />}
         {selectedStep === 1 && (
           <HeadingTab 
-            selectedTemplate={templateComponents[selectedTemplateIdx]} 
+            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
             onNext={handleNextEducation} 
             onGoBack={() => handleGoBack(0)}
             formData={formData.heading}
             updateFormData={updateHeading}
+            fullFormData={formData}
           />
         )}
         {selectedStep === 2 && (
           <EducationTab 
+            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
             onGoBack={() => handleGoBack(1)} 
             onNext={handleNextExperience}
             formData={formData.education}
             updateFormData={updateEducation}
+            fullFormData={formData}
           />
         )}
         {selectedStep === 3 && (
           <ExperienceTab 
+            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
             onGoBack={() => handleGoBack(2)}
             onNext={handleNextSkills}
             formData={formData.experience}
             updateFormData={updateExperience}
+            fullFormData={formData}
           />
         )}
         {selectedStep === 4 && (
           <SkillsTab 
+            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
             onGoBack={() => handleGoBack(3)}
             onNext={handleNextSummary}
             formData={formData.skills}
             updateFormData={updateSkills}
+            fullFormData={formData}
           />
         )}
         {selectedStep === 5 && (
           <SummaryTab 
+            selectedTemplate={React.cloneElement(templateComponents[selectedTemplateIdx], { formData })}
             onGoBack={() => handleGoBack(4)}
             onNext={handleNextFinalize}
             formData={formData.summary}
             updateFormData={updateSummary}
+            fullFormData={formData}
           />
         )}
         {selectedStep === 6 && (
