@@ -151,8 +151,9 @@ const FinalizeTab = (props) => {
           </h3>
           <p style={{ margin: '0 0 24px 0', fontSize: 16, color: '#64748b', lineHeight: 1.5 }}>
             Congratulations! Your professional resume has been created successfully. 
-            You can now download it as a PDF or make any final edits using the buttons on the template.
+            You can now download it as a PDF.
           </p>
+          {/* Pro Tip Section - Commented Out
           <div style={{ 
             background: '#f0f9ff', 
             borderRadius: 12, 
@@ -167,6 +168,7 @@ const FinalizeTab = (props) => {
               Click on any section in the preview to edit it directly. Your changes will be reflected immediately!
             </div>
           </div>
+          */}
         </div>
       </>
     );
@@ -178,22 +180,24 @@ const FinalizeTab = (props) => {
         return <div ref={templateRef}>
           <Template1 
             formData={formData} 
-            onEditSummary={handleEditSummary}
-            onEditEducation={handleEditEducation}
-            onEditExperience={handleEditExperience}
-            onEditSkills={handleEditSkills}
-            onEditContact={handleEditContact}
+            // Edit functionality commented out
+            // onEditSummary={handleEditSummary}
+            // onEditEducation={handleEditEducation}
+            // onEditExperience={handleEditExperience}
+            // onEditSkills={handleEditSkills}
+            // onEditContact={handleEditContact}
           />
         </div>;
       case 1:
         return <div ref={templateRef}>
           <Template2 
             formData={formData} 
-            onEditSummary={handleEditSummary}
-            onEditEducation={handleEditEducation}
-            onEditExperience={handleEditExperience}
-            onEditSkills={handleEditSkills}
-            onEditContact={handleEditContact}
+            // Edit functionality commented out
+            // onEditSummary={handleEditSummary}
+            // onEditEducation={handleEditEducation}
+            // onEditExperience={handleEditExperience}
+            // onEditSkills={handleEditSkills}
+            // onEditContact={handleEditContact}
           />
         </div>;
       default:
